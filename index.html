@@ -68,6 +68,41 @@
             vertical-align: middle;
             margin-left: 10px;
         }
+        .attributes, .titles, .classes {
+            margin: 15px 0;
+            padding: 10px;
+            background: #444;
+            border-radius: 5px;
+        }
+        .status-bar {
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .status-value {
+            color: #76c7c0;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            border-radius: 10px;
+            background-color: #ddd;
+            margin-top: 5px;
+        }
+        .mental-bar {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+        .gif {
+            width: 30px;
+            height: auto;
+            vertical-align: middle;
+            margin-left: 10px;
+        }
+        .progress-bar p {
+            margin: 0;
+        }
+
     </style>
 </head>
 <body>
@@ -137,7 +172,293 @@
             <strong>Sementes de Dungeon:</strong> Forest of Ruins (1x) <img src="https://i.imgur.com/TZQYGZU.gif" alt="Sementes de Dungeon" class="gif">
         </div>
 
+    <!-- Player de Música -->
+        <div class="music-player">
+            <h3>Aura</h3>
+            <iframe width="100%" height="400" src="https://player-widget.mixcloud.com/widget/iframe/?feed=%2Fstrawaryd%2Fbuffy-the-last-shot%2F" frameborder="0" ></iframe>
+        </div>
+
+    <style>
+        
+    </style>
+</head>
+<body>
+    
+
+        <div class="attributes">
+            <h3>Status fisico</h3>
+            <div class="status-bar">
+                <strong>Higiene:</strong>
+                <div class="progress-bar" id="hygiene-bar">
+                    <div class="mental-bar" id="mental-hygiene-bar" style="background-color: #33cc33; width: 100%;"></div>
+                </div>
+                <p><span id="hygiene-percentage">100</span>%</p>
+            </div>
+
+            <div class="status-bar">
+                <strong>Fome:</strong>
+                <div class="progress-bar" id="hunger-bar">
+                    <div class="mental-bar" id="mental-hunger-bar" style="background-color: #33cc33; width: 50%;"></div>
+                </div>
+                <p><span id="hunger-percentage">50</span>%</p>
+            </div>
+
+            <div class="status-bar">
+                <strong>Sede:</strong>
+                <div class="progress-bar" id="thirst-bar">
+                    <div class="mental-bar" id="mental-thirst-bar" style="background-color: #33cc33; width: 40%;"></div>
+                </div>
+                <p><span id="thirst-percentage">40</span>%</p>
+            </div>
+
+            <div class="status-bar">
+                <strong>Sono:</strong>
+                <div class="progress-bar" id="sleep-bar">
+                    <div class="mental-bar" id="mental-sleep-bar" style="background-color: #33cc33; width: 80%;"></div>
+                </div>
+                <p><span id="sleep-percentage">80</span>%</p>
+            </div>
+
+            <div class="status-bar">
+                <strong>Banheiro:</strong>
+                <div class="progress-bar" id="bathroom-bar">
+                    <div class="mental-bar" id="mental-bathroom-bar" style="background-color: #33cc33; width: 20%;"></div>
+                </div>
+                <p><span id="bathroom-percentage">20</span>%</p>
+            </div>
+
+            <div class="status-bar">
+                <strong>Enjoo:</strong>
+                <div class="progress-bar" id="nausea-bar">
+                    <div class="mental-bar" id="mental-nausea-bar" style="background-color: #33cc33; width: 10%;"></div>
+                </div>
+                <p><span id="nausea-percentage">10</span>%</p>
+            </div>
+
+            <div class="status-bar">
+                <strong>Desgaste:</strong>
+                <div class="progress-bar" id="weariness-bar">
+                    <div class="mental-bar" id="mental-weariness-bar" style="background-color: #33cc33; width: 50%;"></div>
+                </div>
+                <p><span id="weariness-percentage">50</span>%</p>
+            </div>
+
+            <div class="status-bar">
+                <strong>Estresse:</strong>
+                <div class="progress-bar" id="stress-bar">
+                    <div class="mental-bar" id="mental-stress-bar" style="background-color: #33cc33; width: 50%;"></div>
+                </div>
+                <p><span id="stress-percentage">50</span>%</p>
+            </div>
+
+            <!-- Correção dos campos: Moral, Medo e Foco -->
+            <div class="status-bar">
+                <strong>Moral:</strong>
+                <div class="progress-bar" id="moral-bar">
+                    <div class="mental-bar" id="mental-moral-bar" style="background-color: #33cc33; width: 60%;"></div>
+                </div>
+                <p><span id="moral-percentage">60</span>%</p>
+            </div>
+
+            <div class="status-bar">
+                <strong>Medo:</strong>
+                <div class="progress-bar" id="fear-bar">
+                    <div class="mental-bar" id="mental-fear-bar" style="background-color: #33cc33; width: 30%;"></div>
+                </div>
+                <p><span id="fear-percentage">30</span>%</p>
+            </div>
+
+            <div class="status-bar">
+                <strong>Foco:</strong>
+                <div class="progress-bar" id="focus-bar">
+                    <div class="mental-bar" id="mental-focus-bar" style="background-color: #33cc33; width: 80%;"></div>
+                </div>
+                <p><span id="focus-percentage">80</span>%</p>
+            </div>
+
+        </div>
     </div>
+
+    <script>
+        // Alterar facilmente as porcentagens
+        const statusData = {
+            hygiene: 100,
+            hunger: 51,
+            thirst: 72,
+            sleep: 80,
+            bathroom: 100,
+            nausea: 36,
+            weariness: 92,
+            stress: 22,
+            moral: 60,
+            fear: 100,
+            focus: 43
+        };
+
+        function updateBarColors() {
+            for (const [key, value] of Object.entries(statusData)) {
+                const percentage = value;
+                const color = percentage > 70 ? '#33cc33' : percentage > 40 ? '#ffcc00' : '#ff3333';
+                document.getElementById(`${key}-percentage`).innerText = percentage;
+                document.getElementById(`mental-${key}-bar`).style.backgroundColor = color;
+                document.getElementById(`mental-${key}-bar`).style.width = `${percentage}%`;
+            }
+        }
+
+        // Atualizar a barra de status ao carregar a página
+        updateBarColors();
+    </script>
+  <style>
+        body {
+/* Estilo do painel de habilidades */
+        .action-button {
+            display: inline-block;
+            background-color: #76c7c0;
+            color: #333;
+            padding: 10px 20px;
+            margin-top: 15px;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .action-button:hover {
+            background-color: #5ca09e;
+        }
+        #skills-panel {
+            display: none;
+            background: rgba(0, 0, 0, 0.8);
+            color: #ffffff;
+            border-radius: 5px;
+            padding: 20px;
+            margin-top: 20px;
+            position: relative;
+        }
+        #skills-list {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+        #skills-list li {
+            cursor: pointer;
+            padding: 10px;
+            border-bottom: 1px solid #555;
+        }
+        #skills-list li:hover {
+            background-color: #444;
+        }
+        #skill-details {
+            margin-top: 15px;
+        }
+        #skill-details h3 {
+            color: #f5b12b;
+        }
+        #skill-details p {
+            margin-bottom: 10px;
+        }
+        .details-section {
+            margin-top: 10px;
+            padding: 10px;
+            background: #555;
+            border-radius: 5px;
+        }
+        .details-section h4 {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="action-button" onclick="toggleSkillsPanel()">Ver Habilidades</div>
+
+<div id="skills-panel">
+    <ul id="skills-list">
+        <li onclick="showSkillDetails('Corte Rápido')">Corte Rápido</li>
+        <li onclick="showSkillDetails('Rastreamento')">Rastreamento</li>
+        <li onclick="showSkillDetails('Escrita Mágica')">Escrita Mágica</li>
+        <li onclick="showSkillDetails('Vampire Lady\'s mansion')">Vampire Lady's mansion</li>
+    </ul>
+    <div id="skill-details"></div>
+</div>
+
+<script>
+    function toggleSkillsPanel() {
+        var panel = document.getElementById('skills-panel');
+        panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function showSkillDetails(skill) {
+        var details = document.getElementById('skill-details');
+        if (skill === 'Corte Rápido') {
+            details.innerHTML = `
+                <h3>#Nova Habilidade Ativa Desbloqueada: Corte Rápido</h3>
+                <p><strong>Descrição:</strong> Buffy, habilmente, ajusta suas orelhas de coelho em uma posição horizontal, semelhante a lâminas afiadas, e começa a girar rapidamente. Esta habilidade é uma demonstração de agilidade e destreza excepcionais. Quando ativada, Buffy realiza uma série de cortes extremamente velozes e precisos com suas "lâminas de orelhas", causando atordoamento ao alvo e infligindo sangramento grave.</p>
+                <div class="details-section">
+                    <h4>Funcionamento Detalhado:</h4>
+                    <ul>
+                        <li><strong>Atordoamento:</strong> Os cortes rápidos são tão vertiginosos que deixam o alvo momentaneamente desorientado, resultando em um atordoamento temporário que impede qualquer ação imediata.</li>
+                        <li><strong>Sangramento Grave:</strong> Os cortes são profundos e precisos, causando ferimentos que continuam a sangrar intensamente, infligindo dano adicional ao longo do tempo.</li>
+                        <li><strong>Tempo de Giro:</strong> Quanto mais tempo Buffy mantém a habilidade ativada, mais cortes ela consegue realizar, aumentando o dano e o atordoamento. No entanto, prolongar o giro também expõe Buffy a um período de atordoamento após o uso, já que a intensidade da habilidade afeta a própria coelha.</li>
+                    </ul>
+                </div>
+                <p><strong>Tipo:</strong> ??</p>
+                <p><strong>Nível:</strong> 10</p>
+                <p><strong>Classe:</strong> Habilidade de Classe A</p>
+            `;
+        } else if (skill === 'Rastreamento') {
+            details.innerHTML = `
+                <h3>#Nova Habilidade Passiva Desbloqueada: Rastreamento</h3>
+                <p><strong>Descrição:</strong> Anos de experiência em caça permitiram que você conhecesse precisamente os sons emitidos por cada animal que já caçou ou ouviu. Ao se concentrar profundamente, você pode criar uma vasta área de rastreamento sonoro em busca do seu alvo. Além disso, ao combinar essa habilidade com seu aguçado olfato, você pode aumentar significativamente a eficácia do rastreamento em uma área menor.</p>
+                <div class="details-section">
+                    <h4>Funcionamento Detalhado:</h4>
+                    <ul>
+                        <li><strong>Rastreamento Sonoro:</strong> Esta habilidade permite que você identifique e siga as pegadas sonoras únicas de animais específicos em um raio considerável ao seu redor. Isso torna possível localizar ou rastrear alvos com base em seus sons distintivos, mesmo em um ambiente ruidoso.</li>
+                        <li><strong>Rastreamento Olfativo:</strong> Quando combinado com seu olfato apurado, o rastreamento sonoro se torna ainda mais eficaz em uma área menor. Isso permite uma localização mais precisa e direcionada de alvos, especialmente em situações em que o som e o odor do alvo estão intimamente ligados.</li>
+                    </ul>
+                </div>
+                <p><strong>Tipo:</strong> ??</p>
+                <p><strong>Nível:</strong> 132</p>
+                <p><strong>Classe:</strong> Habilidade de Classe B</p>
+            `;
+        } else if (skill === 'Escrita Mágica') {
+            details.innerHTML = `
+                <h3>#Nova Habilidade Ativa Desbloqueada: Escrita Mágica</h3>
+                <p><strong>Descrição:</strong> A habilidade "Escrita Mágica" confere ao usuário o domínio sobre a escrita e encantamentos mágicos. Com ela, é possível utilizar e criar escritos mágicos e encantos, extrair runas de páginas e livros encantados, além de realizar diversas outras funções, como a capacidade de ler escrita mágica oculta e aprender a linguagem da mana.</p>
+                <div class="details-section">
+                    <h4>Funcionamento Detalhado:</h4>
+                    <ul>
+                        <li><strong>Criação de Encantamentos:</strong> O usuário pode criar encantamentos mágicos personalizados para diversas finalidades, como proteção, cura, ataque e muito mais.</li>
+                        <li><strong>Extração de Runas:</strong> É possível retirar runas mágicas de páginas de livros encantados ou outros objetos, permitindo a manipulação dessas runas para diferentes propósitos.</li>
+                        <li><strong>Leitura de Escrita Mágica Oculta:</strong> Com esta habilidade, o usuário pode decifrar escritas mágicas ocultas, revelando segredos e informações que estavam escondidos.</li>
+                        <li><strong>Aprender a Linguagem da Mana:</strong> A habilidade também permite ao usuário compreender e interagir com a linguagem da mana, aprimorando sua conexão com a magia em um nível fundamental.</li>
+                    </ul>
+                </div>
+                <p><strong>Tipo:</strong> ??</p>
+                <p><strong>Nível:</strong> Máximo (Capacidade de aprimorar e desenvolver ainda mais a habilidade ao longo do tempo).</p>
+                <p><strong>Classe:</strong> Habilidade de Classe S</p>
+            `;
+        } else if (skill === 'Vampire Lady\'s mansion') {
+            details.innerHTML = `
+                <h3>#Nova Habilidade Ativa Desbloqueada: Vampire Lady's mansion</h3>
+                <p><strong>Descrição:</strong> "Vampire Lady's mansion." concede ao usuário a capacidade de trazer sua própria dimensão, sua própria mansão, para o local desejado. Utilizando a equivalente a uma carga completa de mana pura do seu núcleo, você é capaz de criar um extenso labirinto em forma de mansão, estendendo seu território de influência.</p>
+                <div class="details-section">
+                    <h4>Funcionamento Detalhado:</h4>
+                    <ul>
+                        <li><strong>Manifestação Dimensional:</strong> Ao ativar esta habilidade, você pode trazer à existência uma dimensão paralela que assume a forma de uma mansão.</li>
+                        <li><strong>Extensão do Território:</strong> A mansão se estende como um labirinto encantado, com muitos quartos, corredores e salões, proporcionando um domínio mágico sobre uma área significativa.</li>
+                        <li><strong>Custos de Mana:</strong> A ativação dessa habilidade exige o uso de uma carga completa de mana pura do seu núcleo, tornando-a uma ação custosa e de alto nível de poder.</li>
+                        <li><strong>Utilidades:</strong> A Vampire Lady's mansion pode ser usada para diversas finalidades, desde um refúgio seguro até uma armadilha para inimigos ou mesmo como um local de estudos e experimentações mágicas.</li>
+                    </ul>
+                </div>
+                <p><strong>Tipo:</strong> Dimensional</p>
+                <p><strong>Nível:</strong> 841</p>
+                <p><strong>Classe:</strong> Habilidade de Classe S</p>
+                <p><strong>Nota:</strong> Esta habilidade é extraordinariamente poderosa e requer cuidado na sua utilização, considerando seus custos e implicações dimensionais. Certifique-se de entender completamente suas limitações e potencial antes de ativar a "Vampire Lady's mansion".</p>
+            `;
+        }
+    }
+</script>
+
 
 </body>
 </html>
