@@ -116,6 +116,12 @@
             vertical-align: middle;
             margin-left: 10px;
         }
+        .gif2 {
+            width: 100px;
+            height: auto;
+            vertical-align: middle;
+            margin-left: 10px;
+        }
         .progress-bar p {
             margin: 0;
         }
@@ -128,6 +134,7 @@
     
     <div class="card">
         <h2>Buffy le Fay Pendragon <img src="https://i.imgur.com/GEyuWhO.gif" alt="Buffy" class="gif"></h2>
+        <img src="https://i.imgur.com/jzN026v.png" alt="Empusa" class="gif2">
         <p><strong>Idade:</strong> 157</p>
         <p><strong>Nível:</strong> 1303</p>
         <p><strong>Raça:</strong> Arch Harenggoth <img src="https://i.imgur.com/Mp4W10S.gif" alt="Raça" class="gif"></p>
@@ -863,6 +870,37 @@
             align-items: center;
             justify-content: center;
             transform: rotate(45deg);
+            }
+         .btcubeopen {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 0;                 /* Removendo qualquer padding extra */
+    border: none;
+    border-radius: 50%;
+    font-size: 24px;
+    z-index: 10000;
+    width: 50px;                /* Defina o tamanho desejado do botão */
+    height: 50px;               /* Defina o tamanho desejado do botão */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;          /* Remove qualquer fundo */
+    background-image: url('');
+    background-size: cover;    /* Ajusta a imagem para cobrir o botão atrás do png */
+    background-position: center; /* Centraliza a imagem */
+    border-radius: 50%;        /* Deixe o botão redondo */
+}
+
+button:focus {
+    outline: none;  /* Remove o contorno do botão quando clicado */
+}
+
+button:active {
+    background: none; /* Remove qualquer fundo quando pressionado */
+}
+
+
         }
 
         .open-portal-btncube::before {
@@ -951,7 +989,10 @@
 <body>
 
     <!-- Botão para abrir o portal -->
-    <button class="open-portal-btncube" onclick="togglePortal()"></button>
+    <button class="btcubeopen" onclick="togglePortal()">
+    <img src="https://i.imgur.com/ZzakfCz.png" alt="Ícone do botão">
+</button>
+
 
     <!-- Caixa portal -->
     <div class="status-containercube" id="portalBox">
