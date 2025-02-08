@@ -416,6 +416,14 @@
         </div>
 
         <div class="status-bar">
+            <strong>Aether:</strong>
+            <div class="progress-bar" id="aether-bar">
+                <div class="mental-bar" id="mental-aether-bar" style="width: 75%;"></div>
+            </div>
+            <p><span id="aether-percentage">25</span>%</p>
+        </div>
+        
+        <div class="status-bar">
             <strong>Tédio:</strong>
             <div class="progress-bar" id="boredom-bar">
                 <div class="mental-bar" id="mental-boredom-bar" style="width: 25%;"></div>
@@ -446,23 +454,24 @@
             hygiene: 100, 
             bathroom: 100, 
             sleep: 100, 
-            weariness: 7, 
-            hunger: 61,
-            thirst: 19, 
-            fun: 74, 
-            social: 84, 
-            focus: 48, 
-            selfesteem: 89,
-            nausea: 13, 
+            weariness: 0, 
+            hunger: 0,
+            thirst: 0, 
+            fun: 99, 
+            social: 99, 
+            focus: 99, 
+            selfesteem: 99,
+            nausea: 0, 
             fatigue: 0, 
-            stress: 21, 
-            anxiety: 12, 
+            stress: 0, 
+            anxiety: 0, 
             fear: 0,
-            happiness: 81, 
-            desire: 53, 
+            happiness: 99, 
+            desire: 99, 
+            aether: 101,
             boredom: 0, 
             agressive: 53,
-            anger: 8
+            anger: 0
         };
 
         function updateBarColors() {
